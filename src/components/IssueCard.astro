@@ -1,0 +1,55 @@
+---
+import { getConfig } from '../utils/config';
+const config = getConfig();
+const { issue } = Astro.props;
+const baseUrl = `${config.publisher.siteUrl}/${issue.repoName}`;
+---
+
+<a href={`/issues/${issue.id}`} class="group block bg-white rounded-3xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+  <div class="flex flex-col md:flex-row min-h-[500px]">
+    <!-- Left: Cover Image with refined padding -->
+    <div class="w-full md:w-2/5 bg-gray-50 flex items-center justify-center p-6 border-r border-gray-100">
+      <div class="relative w-full h-full flex items-center justify-center">
+        <img 
+          src={`${baseUrl}/frontcover.png`} 
+          alt={`Front Cover of ${issue.title}`} 
+          class="max-w-full max-h-[440px] object-contain shadow-2xl group-hover:scale-105 transition-transform duration-700 [image-rendering:auto] transform-gpu"
+        />
+      </div>
+    </div>
+    
+    <!-- Right: Content -->
+    <div class="w-full md:w-3/5 p-12 flex flex-col justify-center bg-white">
+      <div class="flex items-center gap-4 mb-8">
+        <span class="text-sm font-black text-blue-700 bg-blue-50 px-4 py-1.5 rounded-full uppercase tracking-tighter">
+          Vol. {issue.volume} · No. {issue.issue}
+        </span>
+        <span class="text-lg font-bold text-gray-400">{issue.year}</span>
+      </div>
+      
+      <h3 class="text-3xl md:text-5xl font-serif font-bold text-gray-900 group-hover:text-blue-600 transition-colors leading-tight mb-8">
+        {issue.title}
+      </h3>
+
+      <div class="space-y-4 mb-10">
+        <div class="flex flex-wrap gap-3">
+          {issue.authors.map((author) => (
+            <span class="text-2xl text-gray-700 italic font-medium">
+              {author}{author !== issue.authors[issue.authors.length - 1] ? "," : ""}
+            </span>
+          ))}
+        </div>
+        <div class="text-sm font-black text-gray-400 uppercase tracking-[0.2em]">
+          Edited by {issue.editors.join(", ")}
+        </div>
+      </div>
+
+      <div class="mt-auto pt-6">
+        <div class="inline-flex items-center text-blue-600 font-black text-xl uppercase tracking-widest group-hover:translate-x-3 transition-transform duration-300">
+          View Full Paper
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 ml-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</a>

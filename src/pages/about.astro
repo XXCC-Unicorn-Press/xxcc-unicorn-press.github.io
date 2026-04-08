@@ -1,0 +1,63 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getConfig } from '../utils/config';
+
+const config = getConfig();
+---
+
+<Layout title="About">
+  <article class="max-w-3xl mx-auto py-12 md:py-20">
+    <header class="mb-12">
+      <h1 class="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-6 leading-tight">
+        About XXCC Unicorn Press
+      </h1>
+      <p class="text-xl text-gray-600 leading-relaxed italic">
+        An independent publishing initiative dedicated to documenting the collaborative research of Yifei Fan and Xiayu Tan.
+      </p>
+    </header>
+
+    <section class="prose prose-lg prose-gray max-w-none mb-16">
+      <h2 class="text-2xl font-serif font-bold text-gray-900 mb-4 border-b-2 border-blue-100 pb-2">The Publisher</h2>
+      <p>
+        <strong>XXCC Unicorn Press</strong> is a specialized publishing house founded to provide a formal home for the academic and scientific contributions of its founding editors. Our mission is to bridge the gap between individual research and professional publication standards, ensuring that every paper is presented with the rigor it deserves.
+      </p>
+
+      <h2 class="text-2xl font-serif font-bold text-gray-900 mt-12 mb-4 border-b-2 border-blue-100 pb-2">The Journal</h2>
+      <p>
+        The <strong>Journal of XXCC Unicorn</strong> is the primary publication of the press. It is a peer-reviewed (internally) multidisciplinary journal that focuses on high-impact research, theoretical explorations, and innovative problem-solving. Each issue of the journal is dedicated to a single, comprehensive research paper, allowing for deep dives into complex topics.
+      </p>
+
+      <h2 class="text-2xl font-serif font-bold text-gray-900 mt-12 mb-4 border-b-2 border-blue-100 pb-2">Digital Archiving</h2>
+      <p>
+        In the spirit of open science and transparency, every issue of the journal is archived as an independent repository within our <a href={config.publisher.githubOrg} target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">GitHub Organization</a>. This ensures that the complete history, source files, and supplemental materials for every publication remain accessible and verifiable.
+      </p>
+
+      <h2 class="text-2xl font-serif font-bold text-gray-900 mt-12 mb-4 border-b-2 border-blue-100 pb-2">Editorial Board</h2>
+      <p>The journal is led by two founding Editors-in-Chief:</p>
+      <ul class="list-none pl-0 space-y-4">
+        {config.editors.map((editor) => (
+          <li class="bg-gray-50 p-4 rounded-xl border border-gray-100">
+            <div class="font-bold text-gray-900">{editor.name}</div>
+            <div class="text-sm text-gray-500 mb-2">{editor.role}</div>
+            <a href={`mailto:${editor.email}`} class="text-blue-600 text-sm hover:underline">{editor.email}</a>
+          </li>
+        ))}
+      </ul>
+
+      <h2 class="text-2xl font-serif font-bold text-gray-900 mt-12 mb-4 border-b-2 border-blue-100 pb-2">Licensing & Open Access</h2>
+      <p>
+        XXCC Unicorn Press is committed to open access. The source code and infrastructure for this website are licensed under the <strong>MIT License</strong>.
+      </p>
+      <p>
+        Individual papers and issues are typically licensed under their own specific terms (e.g., Creative Commons), which can be found within each issue's dedicated repository and detail page.
+      </p>
+    </section>
+
+    <footer class="mt-20 pt-8 border-t border-gray-200">
+      <a href="/" class="text-blue-600 hover:text-blue-800 transition-colors inline-flex items-center gap-2 font-bold uppercase tracking-widest text-sm">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        Back to Publications
+      </a>
+    </footer>
+  </article>
+</Layout>

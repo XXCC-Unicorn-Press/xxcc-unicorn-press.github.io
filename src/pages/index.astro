@@ -1,0 +1,55 @@
+---
+import Layout from '../layouts/Layout.astro';
+import IssueCard from '../components/IssueCard.astro';
+import { getConfig } from '../utils/config';
+
+const config = getConfig();
+---
+
+<Layout>
+  <!-- Hero Section -->
+  <section class="py-12 md:py-20 max-w-3xl">
+    <h1 class="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-6 leading-tight">
+      {config.publisher.name}
+    </h1>
+    <h2 class="text-2xl text-gray-600 font-serif mb-8">
+      Publisher of the <span class="text-gray-900 font-semibold">{config.publisher.journalName}</span>
+    </h2>
+    <p class="text-lg text-gray-600 leading-relaxed mb-10">
+      {config.publisher.description}
+    </p>
+    <div class="bg-blue-50 border border-blue-100 rounded-2xl p-6 inline-block">
+      <h3 class="text-sm font-bold text-blue-900 uppercase tracking-wider mb-3">Editorial Board</h3>
+      <ul class="flex flex-col md:flex-row gap-4 md:gap-8">
+        {config.editors.map((editor) => (
+          <li class="flex flex-col">
+            <div class="flex items-center gap-2 text-blue-800">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-blue-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              <span class="font-medium">{editor.name}</span>
+              <span class="text-blue-600/70 text-sm ml-1">({editor.role})</span>
+            </div>
+            <a href={`mailto:${editor.email}`} class="text-sm text-blue-600 hover:text-blue-800 ml-7 transition-colors">
+              {editor.email}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Issues List Section -->
+  <section class="py-12 border-t border-gray-200">
+    <div class="flex items-end justify-between mb-10">
+      <div>
+        <h2 class="text-3xl font-serif font-bold text-gray-900 mb-2">Published Issues</h2>
+        <p class="text-gray-500">Browse the collection of the {config.publisher.journalName}.</p>
+      </div>
+    </div>
+    
+    <div class="grid grid-cols-1 gap-16">
+      {config.issues.map((issue) => (
+        <IssueCard issue={issue} />
+      ))}
+    </div>
+  </section>
+</Layout>

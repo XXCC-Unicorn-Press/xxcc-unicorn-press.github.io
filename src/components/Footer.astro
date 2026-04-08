@@ -1,0 +1,35 @@
+---
+import { getConfig } from '../utils/config';
+const config = getConfig();
+const currentYear = new Date().getFullYear();
+---
+<footer class="bg-gray-900 text-gray-400 py-12">
+  <div class="max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div>
+      <h3 class="text-white text-lg font-serif font-semibold mb-4">{config.publisher.name}</h3>
+      <p class="text-sm leading-relaxed mb-4 max-w-sm">
+        {config.publisher.description}
+      </p>
+    </div>
+    <div class="md:text-right">
+      <h4 class="text-white font-medium mb-4">Editors</h4>
+      <ul class="space-y-3 text-sm">
+        {config.editors.map((editor) => (
+          <li>
+            <div class="text-white">{editor.name}</div>
+            <div class="text-gray-500 text-xs mb-1">{editor.role}</div>
+            <a href={`mailto:${editor.email}`} class="text-blue-400 hover:text-blue-300 transition-colors text-xs">
+              {editor.email}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+  <div class="max-w-5xl mx-auto px-6 mt-12 pt-8 border-t border-gray-800 text-sm text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-4">
+    <p>&copy; {currentYear} {config.publisher.name}. Licensed under the <a href="/about" class="underline hover:text-white transition-colors">MIT License</a>.</p>
+    <a href={config.publisher.githubOrg} target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">
+      Visit our GitHub Organization
+    </a>
+  </div>
+</footer>

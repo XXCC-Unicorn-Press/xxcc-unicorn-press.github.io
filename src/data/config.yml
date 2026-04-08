@@ -1,0 +1,29 @@
+publisher:
+  name: "XXCC Unicorn Press"
+  journalName: "Journal of XXCC Unicorn"
+  description: "XXCC Unicorn Press and the Journal of XXCC Unicorn are dedicated to recording and publishing the outstanding research and papers by Xiayu Tan and Yifei Fan."
+  githubOrg: "https://github.com/XXCC-Unicorn-Press"
+  siteUrl: "https://xxcc-unicorn-press.github.io"
+
+editors:
+  - name: "Yifei Fan"
+    role: "Editor-in-Chief"
+    email: "fanyf22@mails.tsinghua.edu.cn"
+  - name: "Xiayu Tan"
+    role: "Contributor"
+    email: "tan-xy22@mails.tsinghua.edu.cn"
+
+issues:
+  - id: "cerf-diagrams-barbell-maps"
+    title: "Cerf Diagrams and Hatcher-Wagoner Invariants for Barbell Maps"
+    volume: 1
+    issue: 1
+    year: 2026
+    authors:
+      - "Xiayu Tan"
+    editors:
+      - "Yifei Fan"
+    repoName: "Cerf-Diagrams-and-Hatcher-Wagoner-Invariants-for-Barbell-Maps"
+    abstract: |
+      For a half-unknotted implanted barbell $\beta$, we construct two specific pseudo-isotopies, both resulting in that barbell diffeomorphism, and compute the Hatcher-Wagoner invariants for both.
+      We further generalize the results to half-unknotted immersed barbell diffeomorphisms and prove that for every $\sigma \in \pi_2 M$ and $\gamma \in \pi_1 M$, there is a half-unknotted immersed barbell diffeomorphism $\phi_\beta$ with the second induced Hatcher-Wagoner invariant $\Theta(\phi_\beta) = (0, \sigma) \cdot [\gamma]$.

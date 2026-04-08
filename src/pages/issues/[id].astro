@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import config from '../../data/config.yml';
 import { renderMath } from '../../utils/math';
+import type { Issue } from '../../types/config';
 
 export async function getStaticPaths() {
   return config.issues.map((issue) => {
@@ -10,6 +11,10 @@ export async function getStaticPaths() {
       props: { issue },
     };
   });
+}
+
+interface Props {
+  issue: Issue;
 }
 
 const { issue } = Astro.props;

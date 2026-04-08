@@ -5,6 +5,10 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import config from '../data/config.yml';
 
+interface Props {
+	title?: string;
+}
+
 const { title } = Astro.props;
 const siteTitle = title ? `${title} | ${config.publisher.name}` : config.publisher.name;
 ---

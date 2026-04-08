@@ -1,5 +1,11 @@
 ---
+import type { Issue } from '../types/config';
 import config from '../data/config.yml';
+
+interface Props {
+  issue: Issue;
+}
+
 const { issue } = Astro.props;
 const baseUrl = `${config.publisher.siteUrl}/${issue.repoName}`;
 ---

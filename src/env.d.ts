@@ -1,11 +1,13 @@
 /// <reference types="astro/client" />
 
 declare module '*.yml' {
-  const value: any;
+  import type { Config } from './types/config';
+  const value: Config;
   export default value;
 }
 
 declare module '*.yaml' {
-  const value: any;
+  import type { Config } from './types/config';
+  const value: Config;
   export default value;
 }

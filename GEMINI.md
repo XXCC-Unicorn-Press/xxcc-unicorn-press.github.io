@@ -27,6 +27,7 @@ This project is a static website for **XXCC Unicorn Press** and its journal, **J
 
 ## 📝 Development Conventions
 
+- **Critical Data Integrity**: Before making ANY changes to `src/data/config.yml`, you MUST read the file first to check for manual user modifications. NEVER overwrite the file with cached or outdated content.
 - **Content Updates**: All primary content (titles, authors, editors, abstracts) should be modified in `src/data/config.yml`.
 - **Math in YAML**: Mathematical notation in the `abstract` field should use LaTeX syntax. Use block style (`|`) in YAML for multi-line abstracts.
 - **Image Rendering**: The site uses `[image-rendering:auto] transform-gpu` on cover images to ensure high-quality, hardware-accelerated scaling.

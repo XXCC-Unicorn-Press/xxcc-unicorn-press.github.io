@@ -1,13 +1,39 @@
 /// <reference types="astro/client" />
 
-declare module '*.yml' {
-  import type { Config } from './types/config';
-  const value: Config;
-  export default value;
-}
+declare module "*.yml" {
+  export interface Publisher {
+    name: string;
+    journalName: string;
+    description: string;
+    githubOrg: string;
+    siteUrl: string;
+  }
 
-declare module '*.yaml' {
-  import type { Config } from './types/config';
+  export interface Editor {
+    name: string;
+    role: string;
+    email: string;
+  }
+
+  export interface Issue {
+    id: string;
+    title: string;
+    volume: number;
+    issue: number;
+    year: number;
+    authors: string[];
+    editors: string[];
+    repoName: string;
+    arxiv?: string;
+    abstract: string;
+  }
+
+  export interface Config {
+    publisher: Publisher;
+    editors: Editor[];
+    issues: Issue[];
+  }
+
   const value: Config;
   export default value;
 }

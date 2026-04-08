@@ -26,6 +26,7 @@ This project is a static website for **XXCC Unicorn Press** and its journal, **J
 
 ## 📝 Development Conventions
 
+- **Source Control Mandate**: NEVER perform `git commit` or `git push` without explicit, case-by-case permission from the user.
 - **Critical Data Integrity**: Before making ANY changes to `src/data/config.yml`, you MUST read the file first to check for manual user modifications. NEVER overwrite the file with cached or outdated content.
 - **Direct YAML Imports**: The configuration file `src/data/config.yml` should be imported directly using `import config from '../data/config.yml';`.
 - **Content Updates**: All primary content (titles, authors, editors, abstracts) should be modified in `src/data/config.yml`.

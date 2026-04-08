@@ -1,8 +1,7 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import config from '../../data/config.yml';
-import { renderMath } from '../../utils/math';
-import type { Issue } from '../../types/config';
+import Layout from "../../layouts/Layout.astro";
+import config, { type Issue } from "../../data/config.yml";
+import { renderMath } from "../../utils/math";
 
 export async function getStaticPaths() {
   return config.issues.map((issue) => {
@@ -25,8 +24,21 @@ const repoUrl = `https://github.com/XXCC-Unicorn-Press/${issue.repoName}`;
 <Layout title={issue.title}>
   <article class="max-w-5xl mx-auto py-8 md:py-16">
     <div class="mb-12">
-      <a href="/" class="text-blue-600 hover:text-blue-800 transition-colors inline-flex items-center gap-2 text-lg font-bold">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+      <a
+        href="/"
+        class="text-blue-600 hover:text-blue-800 transition-colors inline-flex items-center gap-2 text-lg font-bold"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg
+        >
         Back to Publications
       </a>
     </div>
@@ -34,19 +46,31 @@ const repoUrl = `https://github.com/XXCC-Unicorn-Press/${issue.repoName}`;
     <div class="flex flex-col lg:flex-row gap-16">
       <!-- Covers Column -->
       <div class="w-full lg:w-2/5 flex flex-col gap-10">
-        <div class="bg-white rounded-3xl shadow-xl border border-gray-200 overflow-hidden relative group">
-          <div class="absolute top-4 left-4 bg-black/70 text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity z-10">Front Cover</div>
-          <img 
-            src={`${baseUrl}/frontcover.png`} 
-            alt={`Front Cover of ${issue.title}`} 
+        <div
+          class="bg-white rounded-3xl shadow-xl border border-gray-200 overflow-hidden relative group"
+        >
+          <div
+            class="absolute top-4 left-4 bg-black/70 text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity z-10"
+          >
+            Front Cover
+          </div>
+          <img
+            src={`${baseUrl}/frontcover.png`}
+            alt={`Front Cover of ${issue.title}`}
             class="w-full h-auto object-cover [image-rendering:auto] transform-gpu"
           />
         </div>
-        <div class="bg-white rounded-3xl shadow-xl border border-gray-200 overflow-hidden relative group">
-          <div class="absolute top-4 left-4 bg-black/70 text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity z-10">Back Cover</div>
-          <img 
-            src={`${baseUrl}/backcover.png`} 
-            alt={`Back Cover of ${issue.title}`} 
+        <div
+          class="bg-white rounded-3xl shadow-xl border border-gray-200 overflow-hidden relative group"
+        >
+          <div
+            class="absolute top-4 left-4 bg-black/70 text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity z-10"
+          >
+            Back Cover
+          </div>
+          <img
+            src={`${baseUrl}/backcover.png`}
+            alt={`Back Cover of ${issue.title}`}
             class="w-full h-auto object-cover [image-rendering:auto] transform-gpu"
           />
         </div>
@@ -56,91 +80,173 @@ const repoUrl = `https://github.com/XXCC-Unicorn-Press/${issue.repoName}`;
       <div class="w-full lg:w-3/5">
         <header class="mb-12">
           <div class="flex items-center gap-4 mb-6">
-            <span class="inline-block bg-blue-50 text-blue-700 text-sm font-black px-4 py-1.5 rounded-full uppercase tracking-tighter">
+            <span
+              class="inline-block bg-blue-50 text-blue-700 text-sm font-black px-4 py-1.5 rounded-full uppercase tracking-tighter"
+            >
               Vol. {issue.volume} · No. {issue.issue}
             </span>
             <span class="text-lg font-bold text-gray-400">
               {issue.year}
             </span>
-            {issue.arxiv && (
-              <a 
-                href={`https://arxiv.org/abs/${issue.arxiv}`} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                class="inline-flex items-center bg-[#B31B1B] text-white text-[10px] font-black px-2 py-0.5 rounded hover:bg-red-700 transition-colors ml-2"
-              >
-                arXiv:{issue.arxiv}
-              </a>
-            )}
+            {
+              issue.arxiv && (
+                <a
+                  href={`https://arxiv.org/abs/${issue.arxiv}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center bg-[#B31B1B] text-white text-[10px] font-black px-2 py-0.5 rounded hover:bg-red-700 transition-colors ml-2"
+                >
+                  arXiv:{issue.arxiv}
+                </a>
+              )
+            }
           </div>
-          
-          <h1 class="text-4xl md:text-5xl font-serif font-bold text-gray-900 leading-tight mb-6">
+
+          <h1
+            class="text-4xl md:text-5xl font-serif font-bold text-gray-900 leading-tight mb-6"
+          >
             {issue.title}
           </h1>
 
           <div class="flex flex-col gap-4">
             <div class="flex flex-wrap gap-3">
-              {issue.authors.map((author) => (
-                <span class="text-2xl text-gray-700 italic font-medium">
-                  {author}{author !== issue.authors[issue.authors.length - 1] ? "," : ""}
-                </span>
-              ))}
+              {
+                issue.authors.map((author) => (
+                  <span class="text-2xl text-gray-700 italic font-medium">
+                    {author}
+                    {author !== issue.authors[issue.authors.length - 1]
+                      ? ","
+                      : ""}
+                  </span>
+                ))
+              }
             </div>
-            <div class="text-sm font-black text-gray-400 uppercase tracking-[0.2em]">
+            <div
+              class="text-sm font-black text-gray-400 uppercase tracking-[0.2em]"
+            >
               Edited by {issue.editors.join(", ")}
             </div>
           </div>
         </header>
 
         <section class="mb-16">
-          <h2 class="text-2xl font-serif font-bold text-gray-900 mb-6 border-b-4 border-blue-600 inline-block">Abstract</h2>
+          <h2
+            class="text-2xl font-serif font-bold text-gray-900 mb-6 border-b-4 border-blue-600 inline-block"
+          >
+            Abstract
+          </h2>
           <div class="prose prose-xl prose-gray max-w-none">
-            <div class="text-gray-700 leading-relaxed text-justify" set:html={renderMath(issue.abstract)} />
+            <div
+              class="text-gray-700 leading-relaxed text-justify"
+              set:html={renderMath(issue.abstract)}
+            />
           </div>
         </section>
 
         <!-- Access Resources -->
-        <div class="bg-white border-2 border-gray-100 rounded-3xl p-10 shadow-sm">
-          <h3 class="text-xl font-black text-gray-900 mb-8 uppercase tracking-widest">Resources</h3>
-          
+        <div
+          class="bg-white border-2 border-gray-100 rounded-3xl p-10 shadow-sm"
+        >
+          <h3
+            class="text-xl font-black text-gray-900 mb-8 uppercase tracking-widest"
+          >
+            Resources
+          </h3>
+
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <a 
-              href={`${baseUrl}/online.pdf`} 
-              target="_blank" 
-              rel="noopener noreferrer" 
+            <a
+              href={`${baseUrl}/online.pdf`}
+              target="_blank"
+              rel="noopener noreferrer"
               class="flex items-center gap-4 bg-blue-50 hover:bg-blue-100 text-blue-900 font-bold px-6 py-5 rounded-2xl transition-all border border-blue-100"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                ><path
+                  d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                ></path><polyline points="14 2 14 8 20 8"></polyline><line
+                  x1="16"
+                  y1="13"
+                  x2="8"
+                  y2="13"></line><line x1="16" y1="17" x2="8" y2="17"
+                ></line></svg
+              >
               Online PDF
             </a>
-            
-            <a 
-              href={`${baseUrl}/print.pdf`} 
-              target="_blank" 
-              rel="noopener noreferrer" 
+
+            <a
+              href={`${baseUrl}/print.pdf`}
+              target="_blank"
+              rel="noopener noreferrer"
               class="flex items-center gap-4 bg-gray-50 hover:bg-gray-100 text-gray-900 font-bold px-6 py-5 rounded-2xl transition-all border border-gray-200"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                ><path d="M6 9V2h12v7"></path><path
+                  d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"
+                ></path><rect x="6" y="14" width="12" height="8"></rect></svg
+              >
               Print PDF
             </a>
 
-            <a 
-              href={`${baseUrl}/LICENSE`} 
-              target="_blank" 
-              rel="noopener noreferrer" 
+            <a
+              href={`${baseUrl}/LICENSE`}
+              target="_blank"
+              rel="noopener noreferrer"
               class="flex items-center gap-4 bg-green-50 hover:bg-green-100 text-green-900 font-bold px-6 py-5 rounded-2xl transition-all border border-green-100"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                ><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
+                ></path></svg
+              >
               License
             </a>
 
-            <a 
-              href={repoUrl} 
-              target="_blank" 
-              rel="noopener noreferrer" 
+            <a
+              href={repoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               class="flex items-center gap-4 bg-gray-900 hover:bg-black text-white font-bold px-6 py-5 rounded-2xl transition-all"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                ><path
+                  d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"
+                ></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg
+              >
               Source
             </a>
           </div>

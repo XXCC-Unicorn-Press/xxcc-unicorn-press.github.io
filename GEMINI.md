@@ -12,8 +12,7 @@ This project is a static website for **XXCC Unicorn Press** and its journal, **J
 
 ## 🛠 Architecture & Key Files
 
-- **`src/data/config.yml`**: The central source of truth. Defines publisher info, editors, and all journal issues (papers).
-- **`src/utils/config.ts`**: Utility to load and parse the YAML configuration.
+- **`src/data/config.yml`**: The central source of truth. Defines publisher info, editors, and all journal issues (papers). Directly imported in components.
 - **`src/utils/math.ts`**: Custom LaTeX renderer supporting inline (`$...$`) and block (`$$...$$`) math using KaTeX.
 - **`src/components/IssueCard.astro`**: A horizontal, full-width card component for the homepage gallery.
 - **`src/pages/issues/[id].astro`**: Dynamic route that generates individual detail pages for each paper.
@@ -28,6 +27,7 @@ This project is a static website for **XXCC Unicorn Press** and its journal, **J
 ## 📝 Development Conventions
 
 - **Critical Data Integrity**: Before making ANY changes to `src/data/config.yml`, you MUST read the file first to check for manual user modifications. NEVER overwrite the file with cached or outdated content.
+- **Direct YAML Imports**: The configuration file `src/data/config.yml` should be imported directly using `import config from '../data/config.yml';`.
 - **Content Updates**: All primary content (titles, authors, editors, abstracts) should be modified in `src/data/config.yml`.
 - **Math in YAML**: Mathematical notation in the `abstract` field should use LaTeX syntax. Use block style (`|`) in YAML for multi-line abstracts.
 - **Image Rendering**: The site uses `[image-rendering:auto] transform-gpu` on cover images to ensure high-quality, hardware-accelerated scaling.

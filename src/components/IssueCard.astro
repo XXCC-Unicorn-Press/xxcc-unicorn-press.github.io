@@ -1,6 +1,5 @@
 ---
-import { getConfig } from '../utils/config';
-const config = getConfig();
+import config from '../data/config.yml';
 const { issue } = Astro.props;
 const baseUrl = `${config.publisher.siteUrl}/${issue.repoName}`;
 ---

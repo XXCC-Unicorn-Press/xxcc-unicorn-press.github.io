@@ -48,6 +48,7 @@ Add a new entry to the `issues` list in `src/data/config.yml`:
   editors:
     - "Editor Name"
   repoName: "the-repository-name"
+  arxiv: "2501.03714" # Optional: ArXiv ID
   abstract: |
     Your abstract text here. 
     Supports inline math like $E=mc^2$ and block math like $$\int_{\Sigma} \omega$$.

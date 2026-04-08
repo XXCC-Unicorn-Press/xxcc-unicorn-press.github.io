@@ -44,5 +44,6 @@ Each issue entry in `config.yml` requires:
   authors: ["Author Name"]
   editors: ["Editor Name"]
   repoName: "github-repo-name"
+  arxiv: "2501.03714" # Optional: ArXiv ID for the paper
   abstract: "Abstract with math like $E=mc^2$."
 ```

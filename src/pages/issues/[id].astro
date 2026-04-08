@@ -59,6 +59,16 @@ const repoUrl = `https://github.com/XXCC-Unicorn-Press/${issue.repoName}`;
             <span class="text-lg font-bold text-gray-400">
               {issue.year}
             </span>
+            {issue.arxiv && (
+              <a 
+                href={`https://arxiv.org/abs/${issue.arxiv}`} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="inline-flex items-center bg-[#B31B1B] text-white text-[10px] font-black px-2 py-0.5 rounded hover:bg-red-700 transition-colors ml-2"
+              >
+                arXiv:{issue.arxiv}
+              </a>
+            )}
           </div>
           
           <h1 class="text-4xl md:text-5xl font-serif font-bold text-gray-900 leading-tight mb-6">
